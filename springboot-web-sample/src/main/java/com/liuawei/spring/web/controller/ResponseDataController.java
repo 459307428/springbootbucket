@@ -1,7 +1,17 @@
 package com.liuawei.spring.web.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -44,6 +54,21 @@ public class ResponseDataController {
 		result.put("name", "xml");
 		result.put("age", 27);
 		return result;
+	}
+	
+	@GetMapping(value="produce/jpeg",produces=MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public void produceJpeg(HttpServletResponse response) throws IOException{
+		File file = new File(
+				"D:\\liuawei\\springbootbucket\\resources\\zuixihuandewangfei.jpeg");
+		FileInputStream fis = new FileInputStream(file);
+		OutputStream os = response.getOutputStream();
+		byte [] data = new byte[1024];
+		while (fis.read(data)!=-1) {
+			os.write(data);	
+		}
+		os.flush();
+		os.close();
 	}
 	
 	@PostMapping(value="consume/json",consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)

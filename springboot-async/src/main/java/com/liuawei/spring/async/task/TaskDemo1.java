@@ -17,7 +17,7 @@ public class TaskDemo1 {
 	public void doTask(int i,CountDownLatch downLatch) throws InterruptedException {
 		long start = System.currentTimeMillis();
 		logger.info("doTask{}开始",i);
-		Thread.sleep(new Random(1000).nextInt());
+		Thread.sleep(new Random().nextInt(1000)+400000);
 		long end = System.currentTimeMillis();
 		logger.info("doTask{}结束,总耗时:{}",i,end-start);
 		downLatch.countDown();
@@ -25,10 +25,12 @@ public class TaskDemo1 {
 	
 	public void doTask2(int i,CountDownLatch downLatch) throws InterruptedException {
 		long start = System.currentTimeMillis();
-		logger.info("doTask{}开始",i);
-		Thread.sleep(new Random(1000).nextInt());
+		logger.info("doTask2--{}开始",i);
+		Thread.sleep(new Random().nextInt(1000)+100);
 		long end = System.currentTimeMillis();
-		logger.info("doTask{}结束,总耗时:{}",i,end-start);
+		logger.info("doTask2--{}结束,总耗时:{}",i,end-start);
 		downLatch.countDown();
 	}
+	
+	
 }

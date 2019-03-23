@@ -10,17 +10,17 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequestMapping(value="forward")
 public class ForwardController {
 
-	@GetMapping(value="/tobaidu")
-	public String toBaidu(){
-		return "forward:https://www.baidu.com";
+	@GetMapping(value="/toUser1")
+	public String toUser1(){
+		return "forward:user";
 	}
 	
-	@GetMapping(value="/tosina")
-	public ModelAndView toSina(){
+	@GetMapping(value="/toUser2")
+	public ModelAndView toUser2(){
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("name", "姓名");
 		mv.addObject("age","28");
-		mv.setViewName("https://www.baidu.com");
+		mv.setViewName("user");
 		return mv;
 	}
 }

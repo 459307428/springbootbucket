@@ -12,7 +12,7 @@ public class ForwardController {
 
 	@GetMapping(value="/toUser1")
 	public String toUser1(){
-		return "forward:user";
+		return "user";
 	}
 	
 	@GetMapping(value="/toUser2")

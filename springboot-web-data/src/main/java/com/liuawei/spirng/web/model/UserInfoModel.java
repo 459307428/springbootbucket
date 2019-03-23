@@ -1,4 +1,4 @@
-package com.liuawei.spirng.web.controller;
+package com.liuawei.spirng.web.model;
 
 import java.util.Date;
 

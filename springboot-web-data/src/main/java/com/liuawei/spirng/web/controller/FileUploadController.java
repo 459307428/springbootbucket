@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("fileupload")
 public class FileUploadController {
 
+	/**
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 */
 	@PostMapping("/image")
 	public String uploadImage(@RequestParam MultipartFile file) throws IOException{
 		String contentType = file.getContentType();
@@ -24,8 +31,8 @@ public class FileUploadController {
 			InputStream is= file.getInputStream();
 			byte[] data = new byte[2048];
 			FileOutputStream fis = new FileOutputStream(
-					new File("D:\\liuawei\\springbootbucket\\resources\\upload"+file.getName()));
-			if((is.read(data)!=-1)){
+					new File("D:\\liuawei\\springbootbucket\\resources\\upload\\"+file.getOriginalFilename()));
+			while(is.read(data)!=-1){
 				fis.write(data);
 			}
 			fis.flush();
@@ -35,6 +42,5 @@ public class FileUploadController {
 			return "error";
 		}
 		return "success";
-	}
-	
+	}	
 }

@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -99,6 +100,27 @@ public class RequestDataController {
 	@PostMapping("withBody6")
 	public String withBody6(@RequestBody List<Map<String, Object>> list){
 		return "获取请求内容数据6:"+list.toArray().toString();
+	}
+	
+	/**
+	 * 获取FORM表单数据  通过参数
+	 * @param formKey1
+	 * @param formKey2
+	 * @return
+	 */
+	@PostMapping("withForm1")
+	public String withForm1(@RequestParam String formKey1,@RequestParam String formKey2){
+		return "获取FORM表单参数formKey1:"+formKey1+"	:formKey2:"+formKey2;
+	}
+	
+	/**
+	 * 获取FORM表单数据 通过对象
+	 * @param userInfo
+	 * @return
+	 */
+	@PostMapping("withForm2")
+	public String withForm2(@ModelAttribute UserInfoModel userInfo){
+		return "获取FORM表单参数:"+userInfo.toString();
 	}
 	
 	@PostMapping("withRequest")
